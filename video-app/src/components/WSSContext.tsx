@@ -5,7 +5,7 @@ interface IWSSContext {
   userSocket: Socket | null;
 }
 
-const WSSContext = React.createContext<IWSSContext | null>(null);
+export const WSSContext = React.createContext<IWSSContext | null>(null);
 
 interface WSSContextProvideProps {}
 

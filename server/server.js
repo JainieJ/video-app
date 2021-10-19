@@ -17,7 +17,10 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
-  console.log(socket.id);
+
+  socket.on("register-new-user", (arg) => {
+    console.log(arg); // world
+  });
 });
 
 server.listen(8000, () => {

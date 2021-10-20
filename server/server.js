@@ -24,6 +24,8 @@ io.on("connection", (socket) => {
     const hasThisUser = peers.find((peer) => peer.socketId === user.socketId);
     if (!hasThisUser) peers.push(user);
     console.log(peers);
+
+    socket.broadcast.emit("peers-updated", peers);
   });
 
   socket.on("disconnect", () => {

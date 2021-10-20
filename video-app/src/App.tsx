@@ -1,19 +1,26 @@
 import * as React from "react";
-import LocalVideo from "./components/localVideo/LocalVideo";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DashBoard from "./components/dashBoard/DashBoard";
 import LoginPage from "./components/loginPage/LoginPage";
-import UserNameContextProvider from "./components/VideoChatContext";
+import UserNameContextProvider from "./components/UserNameContext";
 import WSSContextProvider from "./components/WSSContext";
 
 function App() {
   return (
-    <div>
+    <Router>
       <WSSContextProvider>
         <UserNameContextProvider>
-          {/* <LocalVideo /> */}
-          <LoginPage />
+          <Switch>
+            <Route path="/dashboard">
+              <DashBoard />
+            </Route>
+            <Route path="/">
+              <LoginPage />
+            </Route>
+          </Switch>
         </UserNameContextProvider>
       </WSSContextProvider>
-    </div>
+    </Router>
   );
 }
 

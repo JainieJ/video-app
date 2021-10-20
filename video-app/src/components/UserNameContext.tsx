@@ -24,8 +24,6 @@ const UserNameContextProvider: React.FunctionComponent<VideoChatContextProps> = 
     [userName]
   );
 
-  console.log(value);
-
   return (
     <UserNameContext.Provider value={value}>
       {children}

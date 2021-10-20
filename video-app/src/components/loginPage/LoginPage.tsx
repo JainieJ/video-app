@@ -5,11 +5,15 @@ import Button from "@mui/material/Button";
 
 import s from "./LoginPage.module.css";
 import { WSSContext } from "../WSSContext";
+import { useHistory } from "react-router-dom";
 
 interface LoginPageProps {}
 
 const LoginPage: React.FunctionComponent<LoginPageProps> = () => {
+  const { push } = useHistory();
+
   const { userSocket } = React.useContext(WSSContext) || {};
+
   const [name, setName] = React.useState("");
   const [error, setError] = React.useState("");
 
@@ -28,6 +32,8 @@ const LoginPage: React.FunctionComponent<LoginPageProps> = () => {
       name,
       socketId: userSocket.id,
     });
+
+    push("/dashboard");
   };
 
   return (

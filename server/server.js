@@ -28,6 +28,12 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("peers-updated", peers);
   });
 
+  socket.on("call-invitation", (calee) => {
+    console.log("inviting to call");
+    const caller = peers.find((peer) => peer.socketId === socket.id);
+    io.to(calee.socketId).emit("call-invitation", caller);
+  });
+
   socket.on("disconnect", () => {
     console.log(`user with id ${socket.id} disconnected`);
     peers = peers.filter((peer) => peer.socketId !== socket.id);

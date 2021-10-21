@@ -3,11 +3,13 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import { WSSContext } from "../WSSContext";
+import { PeerContext } from "../PeerContext";
 
 interface UserListProps {}
 
 const UserList: React.FunctionComponent<UserListProps> = () => {
-  const { activeUsers } = React.useContext(WSSContext) || {};
+  const { activeUsers, userSocket } = React.useContext(WSSContext) || {};
+  const { setPeer } = React.useContext(PeerContext) || {};
 
   return (
     <>
@@ -17,6 +19,10 @@ const UserList: React.FunctionComponent<UserListProps> = () => {
             variant="outlined"
             sx={{ bgcolor: "text.disabled" }}
             key={usr.socketId}
+            onClick={() => {
+              setPeer?.(usr);
+              userSocket?.emit("call-invitation", usr);
+            }}
           >
             <CardContent>
               <Typography variant="h5" component="div">
